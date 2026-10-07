@@ -21,7 +21,7 @@ GitHub Pages serves static files and does not process form submissions. The cont
 
 No build command is required.
 
-The interactive 3D scene is in `three-scene.js` and loads Three.js from jsDelivr. It needs an internet connection for that library. The CSS purifier artwork remains as a fallback if the module cannot load.
+The interactive 3D scenes are in `three-scene.js` and `product-scenes.js`; they load Three.js from jsDelivr. They need an internet connection for that library. The CSS purifier artwork and uploaded product photos remain as fallbacks if WebGL or the CDN is unavailable. `theme.css` contains the dark visual theme, and `script.js` handles the responsive navigation and small interactions.
 
 
 ## Uploaded images

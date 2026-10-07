@@ -13,12 +13,59 @@
   toggle.addEventListener("click", () => {
     const open = toggle.getAttribute("aria-expanded") !== "true";
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     nav.classList.toggle("is-open", open);
     document.body.classList.toggle("menu-open", open);
   });
   nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-    toggle.setAttribute("aria-expanded", "false"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
   }));
+  document.addEventListener("keydown", event => {
+    if (event.key !== "Escape") return;
+    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+  });
+  document.addEventListener("click", event => {
+    if (!nav.classList.contains("is-open") || nav.contains(event.target) || toggle.contains(event.target)) return;
+    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+  });
+
+  const revealItems = document.querySelectorAll(".intro-grid,.stat-row,.product-card,.section-heading,.work-card,.quote-band p,.feedback-copy,.feedback-form,.contact-grid>div:first-child,.contact-form");
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }), { threshold: 0.12, rootMargin: "0px 0px -25px 0px" });
+    revealItems.forEach(item => { item.classList.add("reveal"); revealObserver.observe(item); });
+  }
+
+  const navLinks = [...nav.querySelectorAll('a[href^="#"]')].filter(link => link.getAttribute("href") !== "#home");
+  const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach(link => {
+        if (link.getAttribute("href") === `#${entry.target.id}`) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }), { rootMargin: "-30% 0px -60% 0px" });
+    sections.forEach(section => sectionObserver.observe(section));
+  }
+
+  const canTilt = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (canTilt) document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("pointermove", event => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      card.style.setProperty("--tilt-x", `${x * 5}deg`);
+      card.style.setProperty("--tilt-y", `${y * -5}deg`);
+    }, { passive: true });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
 
   let rating = "";
   const stars = [...document.querySelectorAll(".rating button")];
