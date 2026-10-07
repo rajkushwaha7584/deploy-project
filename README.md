@@ -23,6 +23,10 @@ No build command is required.
 
 The interactive 3D scenes are in `three-scene.js` and `product-scenes.js`; they load Three.js from jsDelivr. They need an internet connection for that library. The CSS purifier artwork and uploaded product photos remain as fallbacks if WebGL or the CDN is unavailable. `theme.css` contains the dark visual theme, and `script.js` handles the responsive navigation and small interactions.
 
+Visitors can switch between dark and light appearance with the navigation theme button. Their choice is saved in local storage.
+
+The photo river uses all five supplied images. The optional water ambience is synthesized in the browser and starts only when the visitor presses its button. The Hindi slogan can also be spoken on demand using the browser's Hindi speech voice when available.
+
 
 ## Uploaded images
 

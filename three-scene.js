@@ -73,6 +73,16 @@ if (canvas && frame && !window.matchMedia('(prefers-reduced-motion: reduce)').ma
       particles.push(bead);
     }
 
+    const fallingDrops = [];
+    const fallingMaterial = new THREE.MeshPhysicalMaterial({ color: 0x91f3f1, emissive: 0x13869b, emissiveIntensity: 0.28, roughness: 0.08, metalness: 0.12, transparent: true, opacity: 0.7, clearcoat: 1 });
+    for (let i = 0; i < 24; i++) {
+      const drop = new THREE.Mesh(new THREE.SphereGeometry(0.045 + (i % 3) * 0.012, 12, 10), fallingMaterial);
+      drop.scale.set(0.72, 1.8, 0.72);
+      drop.userData = { x: -2.05 + ((i * 37) % 41) / 40 * 4.1, offset: i * 0.23, speed: 0.42 + (i % 5) * 0.11 };
+      scene.add(drop);
+      fallingDrops.push(drop);
+    }
+
     function resize() {
       const w = frame.clientWidth, h = frame.clientHeight;
       if (!w || !h) return;
@@ -103,6 +113,11 @@ if (canvas && frame && !window.matchMedia('(prefers-reduced-motion: reduce)').ma
         const p = bead.userData, a = p.angle + t * p.speed;
         bead.position.set(Math.cos(a) * p.radius, Math.sin(a * 1.4) * 0.58 + p.lift, Math.sin(a) * 0.65 - 0.1);
         bead.scale.setScalar(0.72 + (Math.sin(t * 1.7 + p.angle) + 1) * 0.22);
+      });
+      fallingDrops.forEach(drop => {
+        const p = drop.userData;
+        const fall = (t * p.speed + p.offset) % 5.2;
+        drop.position.set(p.x + Math.sin(t * 1.5 + p.offset) * 0.035, 2.55 - fall, -0.65 + Math.sin(p.offset) * 0.28);
       });
       renderer.render(scene, camera);
       requestAnimationFrame(animate);

@@ -10,6 +10,24 @@
 
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav-links");
+  const themeToggle = document.querySelector(".theme-toggle");
+  const themeLabel = themeToggle.querySelector(".theme-label");
+  const themeIcon = themeToggle.querySelector(".theme-icon");
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(theme, persist = true) {
+    const dark = theme !== "light";
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    themeToggle.setAttribute("aria-pressed", String(dark));
+    themeToggle.setAttribute("aria-label", `Switch to ${dark ? "light" : "dark"} mode`);
+    themeLabel.textContent = `${dark ? "Light" : "Dark"} mode`;
+    themeIcon.textContent = dark ? "☼" : "☾";
+    themeMeta.content = dark ? "#071522" : "#f5f9f8";
+    if (persist) {
+      try { localStorage.setItem("rse-theme", dark ? "dark" : "light"); } catch { /* Private browsing may block storage. */ }
+    }
+  }
+  applyTheme(document.documentElement.dataset.theme || "dark", false);
+  themeToggle.addEventListener("click", () => applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
   toggle.addEventListener("click", () => {
     const open = toggle.getAttribute("aria-expanded") !== "true";
     toggle.setAttribute("aria-expanded", String(open));
@@ -29,7 +47,7 @@
     toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
   });
 
-  const revealItems = document.querySelectorAll(".intro-grid,.stat-row,.product-card,.section-heading,.work-card,.quote-band p,.feedback-copy,.feedback-form,.contact-grid>div:first-child,.contact-form");
+  const revealItems = document.querySelectorAll(".intro-grid,.stat-row,.product-card,.section-heading,.work-card,.river-card,.quote-band p,.feedback-copy,.feedback-form,.contact-grid>div:first-child,.contact-form");
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -64,6 +82,19 @@
     card.addEventListener("pointerleave", () => {
       card.style.setProperty("--tilt-x", "0deg");
       card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+  if (canTilt) document.querySelectorAll(".river-card").forEach(card => {
+    card.addEventListener("pointermove", event => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      card.style.setProperty("--river-tilt-x", `${x * 4}deg`);
+      card.style.setProperty("--river-tilt-y", `${y * -4}deg`);
+    }, { passive: true });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--river-tilt-x", "0deg");
+      card.style.setProperty("--river-tilt-y", "0deg");
     });
   });
 
