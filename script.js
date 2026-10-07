@@ -10,6 +10,14 @@
 
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav-links");
+  function closeMenu(returnFocus = false) {
+    if (!nav.classList.contains("is-open")) return;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation");
+    nav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+    if (returnFocus) toggle.focus({ preventScroll: true });
+  }
   const themeToggle = document.querySelector(".theme-toggle");
   const themeLabel = themeToggle.querySelector(".theme-label");
   const themeIcon = themeToggle.querySelector(".theme-icon");
@@ -34,18 +42,32 @@
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     nav.classList.toggle("is-open", open);
     document.body.classList.toggle("menu-open", open);
+    if (open) nav.querySelector("a")?.focus({ preventScroll: true });
   });
   nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+    closeMenu();
   }));
   document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;
-    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+    closeMenu(true);
   });
   document.addEventListener("click", event => {
     if (!nav.classList.contains("is-open") || nav.contains(event.target) || toggle.contains(event.target)) return;
-    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation"); nav.classList.remove("is-open"); document.body.classList.remove("menu-open");
+    closeMenu();
   });
+  window.addEventListener("scroll", () => closeMenu(), { passive: true });
+  window.addEventListener("wheel", () => closeMenu(), { passive: true });
+  let touchStartY = null;
+  document.addEventListener("touchstart", event => {
+    touchStartY = nav.classList.contains("is-open") && !nav.contains(event.target) ? event.touches[0].clientY : null;
+  }, { passive: true });
+  document.addEventListener("touchmove", event => {
+    if (touchStartY === null || nav.contains(event.target)) return;
+    if (Math.abs(event.touches[0].clientY - touchStartY) > 12) {
+      touchStartY = null;
+      closeMenu();
+    }
+  }, { passive: true });
 
   const revealItems = document.querySelectorAll(".intro-grid,.stat-row,.product-card,.section-heading,.work-card,.river-card,.quote-band p,.feedback-copy,.feedback-form,.contact-grid>div:first-child,.contact-form");
   if ("IntersectionObserver" in window) {
