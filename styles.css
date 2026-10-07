@@ -3,3 +3,61 @@
 @media(max-width:900px){.site-header{padding:0 5vw}.nav-links{gap:18px}.hero{grid-template-columns:1fr 1fr;padding-left:5vw;padding-right:5vw}.hero-art{transform:scale(.86);transform-origin:center}.hero-copy{padding-left:0}.trust-strip{gap:4vw}.feedback{gap:50px}.contact-grid{gap:38px 55px}}
 @media(max-width:680px){html{scroll-padding-top:72px}.announcement{font-size:9px;height:31px}.announcement-hindi{display:none}.site-header{height:68px}.menu-toggle{display:flex;border:0;background:#eaf3f2;border-radius:8px;width:39px;height:39px;align-items:center;justify-content:center;flex-direction:column;gap:5px;z-index:22}.menu-toggle span{width:17px;height:2px;background:var(--navy);transition:transform .2s}.menu-toggle[aria-expanded=true] span:first-child{transform:translateY(3.5px) rotate(45deg)}.menu-toggle[aria-expanded=true] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}.nav-links{position:fixed;top:99px;left:0;right:0;padding:16px 6vw 24px;background:var(--cream);display:flex;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 13px 20px #10274416;transform:translateY(-150%);transition:transform .25s;z-index:19}.nav-links.is-open{transform:translateY(0)}.nav-links>a:not(.nav-cta){padding:15px 4px;border-bottom:1px solid var(--line)}.nav-cta{margin-top:13px;text-align:center}.section-wrap{padding-left:23px;padding-right:23px}.hero{display:flex;flex-direction:column;align-items:stretch;padding-top:43px;padding-bottom:20px;min-height:unset}.hero-copy{padding:0 2px}.eyebrow{font-size:9px}h1{font-size:66px;margin:17px 0 16px}.hero-sub{font-size:13px;max-width:400px}.hindi-line{font-size:12px}.hero-actions{gap:12px}.button{font-size:11px;padding:0 14px;gap:14px}.button-quiet{font-size:10px}.hero-proof{margin-top:28px}.hero-art{height:420px;transform:scale(.83);transform-origin:top center;margin:25px 0 -55px}.hero-art:before{width:370px;height:370px}.purifier{transform:scale(.9) perspective(750px) rotateY(-10deg) rotateX(2deg)}.chip-one{right:-5px}.chip-two{left:-7px}.label-top{left:8%}.trust-strip{overflow:auto;justify-content:flex-start;padding:19px 23px;gap:22px;min-height:67px}.trust-strip div{font-size:9px}.trust-strip div span{margin-right:5px}.trust-strip i{height:15px}.intro{padding-top:71px;padding-bottom:72px}.intro-grid{grid-template-columns:1fr;gap:19px;margin-top:15px}.intro h2,.section-heading h2,.feedback h2{font-size:39px}.intro-copy p{font-size:12px}.stat-row{margin-top:37px;padding-top:20px}.stat-row>div{padding-left:12px}.stat-row b{font-size:12px}.stat-row small{font-size:8px;line-height:1.5}.product-section{padding:68px 0}.section-heading{display:block;margin-bottom:25px}.section-heading>p{margin-top:14px;font-size:11px}.product-grid{grid-template-columns:1fr;gap:12px}.product-card{height:282px}.product-card h3{margin-top:132px}.product-card p{max-width:260px}.mini-purifier{transform:scale(.85) rotate(7deg);transform-origin:top right;right:42px;top:30px}.mini-lilac{right:53px;top:41px}.service-art{transform:scale(.84);transform-origin:top right;right:37px;top:36px}.work-section{padding-top:72px;padding-bottom:70px}.work-grid{grid-template-columns:1fr;gap:7px}.work-image{height:270px}.work-caption{padding:13px 1px}.work-disclaimer{line-height:1.6}.quote-band{min-height:225px}.quote-band p{font-size:24px}.feedback{padding-top:73px;padding-bottom:70px;grid-template-columns:1fr;gap:27px}.feedback-decoration{display:none}.feedback-form label{margin-top:12px}.contact-section{padding-top:65px}.contact-grid{grid-template-columns:1fr;gap:28px}.contact-section h2{font-size:59px}.contact-section>div>div:first-child>p{margin:14px 0}.contact-form{padding:22px 20px}.contact-footer{grid-column:1;gap:12px;font-size:7px;letter-spacing:.04em}.site-footer{padding:15px 22px;gap:8px;flex-wrap:wrap}.site-footer>span{order:3;width:100%;text-align:center}.footer-brand{font-size:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+#purifier-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.hero-art.has-three-scene>.purifier{visibility:hidden}.hero-art.has-three-scene>.water-drop{visibility:hidden}
+@media(max-width:680px){#purifier-canvas{inset:0}.hero-art.has-three-scene>.purifier{visibility:hidden}}
+
+/* Uploaded product photography and a brighter, more layered page palette. */
+:root{--cream:#f5f9f8;--navy:#102b49;--blue:#087fae;--cyan:#55cada;--line:#dfe9e8}
+body{background:#f5f9f8}
+.announcement{background:linear-gradient(90deg,#102744,#123e5d 52%,#102744)}
+.site-header{background:#f7fbf9ee;backdrop-filter:blur(16px);box-shadow:0 5px 22px #183e4a08}
+.hero{position:relative;background:radial-gradient(ellipse at 88% 51%,#d3f2ee 0,transparent 42%),radial-gradient(ellipse at 3% 4%,#edf5ff 0,transparent 47%)}
+.hero-art:before{background:radial-gradient(circle at 38% 35%,#f3ffff 0,#c8f0ec 47%,#a6dfe0 100%);box-shadow:inset -20px -25px 55px #50b7b944,inset 18px 20px 40px #fff9,0 20px 60px #4baeb522}
+.trust-strip{background:linear-gradient(90deg,#e4f3f1,#f2f6f2 50%,#e4f3f1)}
+.intro{position:relative;background:radial-gradient(ellipse at 94% 5%,#e3f4f7 0,transparent 36%)}
+.product-section{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 11% 0%,#155578 0,transparent 43%),linear-gradient(130deg,#0d2947,#102e4b 55%,#123e52);color:#fff}
+.product-section:before,.contact-section:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#b9ebef18 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(110deg,#0007,transparent 70%)}
+.product-section .section-wrap{position:relative;z-index:1}
+.product-section .section-heading h2,.product-section .section-heading h2 span{color:#fff}
+.product-section .section-heading h2 span{color:#77dfdf}
+.product-section .section-kicker{color:#8dd8df}
+.product-section .section-heading>p,.product-section .product-note{color:#bfd2dc}
+.product-card{box-shadow:0 15px 34px #03162620;transition:transform .28s,box-shadow .28s}
+.product-card:hover{transform:translateY(-7px);box-shadow:0 23px 42px #03162638}
+.product-card:before{content:"";position:absolute;right:20px;top:35px;width:142px;height:126px;border-radius:11px;background-color:#ffffffb8;background-repeat:no-repeat;background-position:center;background-size:contain;box-shadow:0 12px 23px #113d4d24;z-index:1}
+.card-blue:before{background-image:url("images/img1.jpeg");background-color:#eff9fb}
+.card-lilac:before{background-image:url("images/img3.jpeg");background-color:#f4f1fa}
+.card-peach:before{background-image:url("images/img2.jpeg");background-size:cover;background-position:43% center}
+.mini-purifier,.service-art{opacity:0}
+.product-card h3{position:relative;z-index:2}
+.product-card p,.product-card .card-link,.product-card .product-number{position:relative;z-index:2}
+.work-section{position:relative}
+.work-section:before{content:"";position:absolute;inset:0 calc((1180px - 100vw)/2);z-index:-1;background:linear-gradient(120deg,#f7faf8,#edf5f5 52%,#f7f4ee)}
+.work-image{box-shadow:0 18px 40px #173a4b1c;transition:transform .35s,box-shadow .35s}
+.work-card:hover .work-image{transform:translateY(-4px);box-shadow:0 25px 50px #173a4b2b}
+.work-kitchen{background-image:linear-gradient(0deg,#102b4966,transparent 44%),url("images/img2.jpeg");background-size:cover;background-position:center 56%}
+.work-family{background-image:linear-gradient(0deg,#102b4938,transparent 45%),url("images/img4.jpeg");background-size:cover;background-position:center 55%}
+.work-kitchen>div:not(.work-tag),.work-family>div:not(.work-tag),.work-family>.family-note{display:none}
+.work-kitchen .work-tag,.work-family .work-tag{background:#102b49d9;color:#fff;border-color:#ffffff45;backdrop-filter:blur(8px)}
+.work-kitchen .work-tag{font-size:0}.work-kitchen .work-tag:after{content:"COMMERCIAL RO INSTALLATION";font-size:8px}
+.work-family .work-tag{font-size:0}.work-family .work-tag:after{content:"COMMERCIAL WATER DISPENSER";font-size:8px}
+.work-large .work-caption h3,.work-grid>.work-card:not(.work-large) .work-caption h3{font-size:0}
+.work-large .work-caption h3:after{content:"Commercial RO water treatment";font-size:14px}
+.work-grid>.work-card:not(.work-large) .work-caption h3:after{content:"Water dispenser solutions";font-size:14px}
+.work-large .work-caption p,.work-grid>.work-card:not(.work-large) .work-caption p{font-size:0}
+.work-large .work-caption p:after{content:"Industrial filtration and purification";font-size:10px}
+.work-grid>.work-card:not(.work-large) .work-caption p:after{content:"Explore commercial options for your space";font-size:10px}
+.work-disclaimer{padding:12px 15px;border-left:3px solid #46b8c3;background:#e5f0ef;border-radius:0 7px 7px 0}
+.quote-band{background:radial-gradient(ellipse at 50% 130%,#b9e7e0,#e1f5f1 55%,#eef7f5)}
+.feedback{position:relative}
+.feedback:before{content:"";position:absolute;inset:0 calc((1180px - 100vw)/2);z-index:-1;background:radial-gradient(ellipse at 10% 55%,#fff0de 0,transparent 40%),linear-gradient(100deg,#fffaf3,#fbfaf7 55%,#edf8f6)}
+.feedback-form{padding:26px 29px;background:#ffffffd9;border:1px solid #e4eeeb;border-radius:14px;box-shadow:0 18px 42px #23475b10}
+.contact-section{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 90% 5%,#176078 0,transparent 42%),linear-gradient(125deg,#0b2039,#102d4c 56%,#0b3044)}
+.contact-section:before{z-index:-1;background-image:radial-gradient(#b9ebef18 1px,transparent 1px)}
+.contact-form{box-shadow:0 25px 65px #03172d66;border:1px solid #ffffff60}
+.site-footer{background:#08192d}
+@media(max-width:680px){.product-card:before{width:122px;height:116px;right:19px;top:27px}.work-section:before,.feedback:before{inset:0 -23px}.product-section{background:radial-gradient(ellipse at 50% 0%,#155578 0,transparent 49%),linear-gradient(160deg,#0d2947,#102e4b 55%,#123e52)}.work-kitchen{background-position:center}.work-family{background-position:center}}
+.work-section,.feedback{isolation:isolate}
+.work-large .work-caption h3,.work-grid>.work-card:not(.work-large) .work-caption h3{font-size:14px}
+.work-large .work-caption p,.work-grid>.work-card:not(.work-large) .work-caption p{font-size:10px}
+.work-caption h3:after,.work-caption p:after{content:none}

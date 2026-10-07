@@ -1,6 +1,6 @@
-# Riddhi Siddhi Enterprises portfolio
+﻿# Riddhi Siddhi Enterprises portfolio
 
-A responsive, no-build static portfolio designed for GitHub Pages. The purifier artwork is drawn in CSS, so you can deploy this folder as-is without image or framework dependencies.
+A responsive, no-build static portfolio designed for GitHub Pages. The hero includes an animated 3D purifier, built with Three.js; a CSS illustration remains available when WebGL or the CDN is unavailable. The rest of the site has no build step.
 
 ## Update the business details
 
@@ -20,3 +20,10 @@ GitHub Pages serves static files and does not process form submissions. The cont
 4. Open the Pages URL shown in repository settings.
 
 No build command is required.
+
+The interactive 3D scene is in `three-scene.js` and loads Three.js from jsDelivr. It needs an internet connection for that library. The CSS purifier artwork remains as a fallback if the module cannot load.
+
+
+## Uploaded images
+
+The images/ folder contains the supplied purifier and commercial equipment photos. The product and solutions sections reference these files directly, so keep the folder alongside index.html when publishing to GitHub Pages.
