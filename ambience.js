@@ -15,9 +15,14 @@
     const size = audioContext.sampleRate * 3;
     const buffer = audioContext.createBuffer(1, size, audioContext.sampleRate);
     const channel = buffer.getChannelData(0);
+    const noise = new Int16Array(size);
+    const cryptoBlock = 0x8000;
+    for (let offset = 0; offset < size; offset += cryptoBlock) {
+      window.crypto.getRandomValues(noise.subarray(offset, Math.min(offset + cryptoBlock, size)));
+    }
     let brown = 0;
     for (let i = 0; i < size; i++) {
-      const white = Math.random() * 2 - 1;
+      const white = noise[i] / 32768;
       brown = (brown + 0.025 * white) / 1.025;
       channel[i] = brown * 3.2;
     }

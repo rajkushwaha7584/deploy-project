@@ -10,7 +10,16 @@
   let frame = 0;
   let lastTime = 0;
   let drops = [];
-  const random = (min, max) => min + Math.random() * (max - min);
+  const randomPool = new Uint32Array(1024);
+  let randomIndex = randomPool.length;
+  function random(min, max) {
+    if (randomIndex >= randomPool.length) {
+      window.crypto.getRandomValues(randomPool);
+      randomIndex = 0;
+    }
+    const unit = randomPool[randomIndex++] / 0x100000000;
+    return min + unit * (max - min);
+  }
 
   function resize() {
     const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
